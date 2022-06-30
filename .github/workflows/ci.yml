@@ -10,6 +10,7 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    
     services:
       postgres:
         image: postgres:12
@@ -25,12 +26,14 @@ jobs:
           --health-retries 5
       
     steps:
-    - uses: actions/checkout@v3
 
     - name: Set up Go
       uses: actions/setup-go@v3
       with:
         go-version: 1.18
+
+    - name: Check out
+      - uses: actions/checkout@v3
 
     - name: Run migration
       run:  make migrateup

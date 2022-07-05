@@ -1,3 +1,6 @@
+dockerdb:
+	docker stop adminPanel && docker start postgres12
+
 postgres:
 	docker run --name postgres12 -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=slot123 -d postgres:12-alpine
 
@@ -33,4 +36,4 @@ server:
 mock:
 	mockgen -destination db/mock/store.go -package mockdb github.com/devillies/simple_bank/db/sqlc Store 
 
-.PHONY: postgres createdb dropdb migrateup migrateup1 migratedown migratedown1 sqlc server mock
+.PHONY: postgres createdb dropdb migrateup migrateup1 migratedown migratedown1 sqlc server mock dockerdb
